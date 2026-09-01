@@ -35,5 +35,10 @@
     "build": "vite build",
     "preview": "vite preview",
     "test": "vitest"
+  },
+  "vitest": {
+    "globals": true,
+    "environment": "jsdom",
+    "setupFiles": "src/setupTests.ts"
   }
 }
