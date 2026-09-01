@@ -1,0 +1,9 @@
+{
+  "roomNumber": "102",
+  "roomType": "Standard",
+  "capacity": 1,
+  "pricePerNight": 3000,
+  "status": "available",
+  "description": "Comfortable standard room",
+  "floor": 1
+}

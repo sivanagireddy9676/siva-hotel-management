@@ -1,0 +1,9 @@
+{
+  "roomNumber": "201",
+  "roomType": "Suite",
+  "capacity": 4,
+  "pricePerNight": 8000,
+  "status": "available",
+  "description": "Premium suite with living area",
+  "floor": 2
+}
