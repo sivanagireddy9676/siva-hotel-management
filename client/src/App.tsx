@@ -3,6 +3,7 @@ import { Routes, Route, Navigate } from 'react-router-dom'
 import { CssBaseline, Box } from '@mui/material'
 import Header from './components/Header'
 import Sidebar from './components/Sidebar'
+import ProtectedRoute from './components/ProtectedRoute'
 import Dashboard from './pages/Dashboard'
 import Login from './pages/Login'
 import Bookings from './pages/Bookings'
@@ -22,14 +23,17 @@ const App: React.FC = () => {
         <Box component="main" flexGrow={1} className="app-content">
           <Routes>
             <Route path="/login" element={<Login />} />
-            <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/bookings" element={<Bookings />} />
-            <Route path="/rooms" element={<Rooms />} />
-            <Route path="/customers" element={<Customers />} />
-            <Route path="/reports" element={<Reports />} />
-            <Route path="/settings" element={<Settings />} />
-            <Route path="/" element={<Navigate to="/dashboard" replace />} />
-          </Routes>
+
+            <Route element={<ProtectedRoute />}>
+              <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="/bookings" element={<Bookings />} />
+              <Route path="/rooms" element={<Rooms />} />
+              <Route path="/customers" element={<Customers />} />
+              <Route path="/reports" element={<Reports />} />
+              <Route path="/settings" element={<Settings />} />
+              <Route path="/" element={<Navigate to="/dashboard" replace />} />
+            </Route>
+n          </Routes>
         </Box>
       </Box>
     </>
