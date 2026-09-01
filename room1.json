@@ -1,0 +1,9 @@
+{
+  "roomNumber": "101",
+  "roomType": "Deluxe",
+  "capacity": 2,
+  "pricePerNight": 5000,
+  "status": "available",
+  "description": "Luxury deluxe room with city view",
+  "floor": 1
+}
