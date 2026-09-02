@@ -13,7 +13,7 @@ test('login posts credentials and stores token', async () => {
   render(<MemoryRouter><Login /></MemoryRouter>)
   await userEvent.type(screen.getByLabelText(/Email/i), 'a@b.com')
   await userEvent.type(screen.getByLabelText(/Password/i), 'pass')
-  await userEvent.click(screen.getByText(/Sign in/i))
+  await userEvent.click(screen.getByRole('button', { name: /sign in/i }))
   await waitFor(() => expect(mockedApi.post).toHaveBeenCalled())
   // token stored in localStorage — vitest jsdom supports it
   expect(localStorage.getItem('token')).toBe('fake.jwt.token')
