@@ -6,7 +6,7 @@ import DeleteIcon from '@mui/icons-material/Delete'
 import api from '../api/client'
 import { Customer } from '../types'
 import CustomerForm from '../components/CustomerForm'
-nconst Customers: React.FC = () => {
+const Customers: React.FC = () => {
   const [customers, setCustomers] = useState<Customer[]>([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
@@ -15,7 +15,7 @@ import CustomerForm from '../components/CustomerForm'
   const [totalPages, setTotalPages] = useState(1)
   const [openForm, setOpenForm] = useState(false)
   const [editing, setEditing] = useState<Customer | null>(null)
-n  const fetch = async (p = page) => {
+  const fetch = async (p = page) => {
     setLoading(true)
     try {
       const res = await api.get<Customer[]>('/api/customers', { params: { page: p, limit } })
@@ -29,13 +29,13 @@ import CustomerForm from '../components/CustomerForm'
       setCustomers([])
     } finally { setLoading(false) }
   }
-n  useEffect(() => { fetch(page) }, [page])
+  useEffect(() => { fetch(page) }, [page])
   const handleRefresh = () => fetch(1)
   const handleAdd = () => { setEditing(null); setOpenForm(true) }
   const handleEdit = (c: Customer) => { setEditing(c); setOpenForm(true) }
-  const handleSaved = (c: Customer) => { fetch(page) }
-  const handleDelete = async (c: Customer) => { if (!confirm('Delete customer?')) return; try { await api.delete(`/api/customers/${c.id}`); fetch(page) } catch (e) { console.error(e); alert('Delete failed') } }
-n  return (
+  const handleSaved = (_c: Customer) => { fetch(page) }
+  const handleDelete = async (_c: Customer) => { if (!confirm('Delete customer?')) return; try { await api.delete(`/api/customers/${_c.id}`); fetch(page) } catch (e) { console.error(e); alert('Delete failed') } }
+  return (
     <div>
       <Stack direction="row" justifyContent="space-between" alignItems="center" sx={{ mb: 2 }}>
         <Typography variant="h4">Customers</Typography>
@@ -44,7 +44,7 @@ import CustomerForm from '../components/CustomerForm'
           <Button variant="contained" onClick={handleAdd}>Add Customer</Button>
         </Stack>
       </Stack>
-n      <Paper sx={{ p: 2 }}>
+      <Paper sx={{ p: 2 }}>
         {loading ? <CircularProgress /> : error ? <Alert severity="error">{error}</Alert> : (
           <>
             <List>
@@ -65,7 +65,7 @@ import CustomerForm from '../components/CustomerForm'
           </>
         )}
       </Paper>
-n      <CustomerForm open={openForm} onClose={() => setOpenForm(false)} initial={editing} onSaved={handleSaved} />
+      <CustomerForm open={openForm} onClose={() => setOpenForm(false)} initial={editing} onSaved={handleSaved} />
     </div>
   )
 }

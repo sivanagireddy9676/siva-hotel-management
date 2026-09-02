@@ -9,7 +9,7 @@ const Login: React.FC = () => {
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
   const nav = useNavigate()
-n  const submit = async () => {
+  const submit = async () => {
     setLoading(true)
     setError('')
     try {
@@ -27,7 +27,7 @@ const Login: React.FC = () => {
       setLoading(false)
     }
   }
-n  return (
+  return (
     <Box display="flex" justifyContent="center" alignItems="center" height="70vh">
       <Paper sx={{ p: 4, width: 360 }}>
         <Typography variant="h6" gutterBottom>Sign in</Typography>
