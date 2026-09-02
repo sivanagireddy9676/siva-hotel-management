@@ -6,7 +6,7 @@ import DeleteIcon from '@mui/icons-material/Delete'
 import api from '../api/client'
 import { Room } from '../types'
 import RoomForm from '../components/RoomForm'
-nconst Rooms: React.FC = () => {
+const Rooms: React.FC = () => {
   const [rooms, setRooms] = useState<Room[]>([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
@@ -15,7 +15,7 @@ import RoomForm from '../components/RoomForm'
   const [totalPages, setTotalPages] = useState(1)
   const [openForm, setOpenForm] = useState(false)
   const [editing, setEditing] = useState<Room | null>(null)
-n  const fetch = async (p = page) => {
+  const fetch = async (p = page) => {
     setLoading(true)
     try {
       const res = await api.get<Room[]>('/api/rooms', { params: { page: p, limit } })
@@ -29,13 +29,13 @@ import RoomForm from '../components/RoomForm'
       setRooms([])
     } finally { setLoading(false) }
   }
-n  useEffect(() => { fetch(page) }, [page])
+  useEffect(() => { fetch(page) }, [page])
   const handleRefresh = () => fetch(1)
   const handleAdd = () => { setEditing(null); setOpenForm(true) }
   const handleEdit = (r: Room) => { setEditing(r); setOpenForm(true) }
-  const handleSaved = (r: Room) => { fetch(page) }
-  const handleDelete = async (r: Room) => { if (!confirm('Delete room?')) return; try { await api.delete(`/api/rooms/${r.id}`); fetch(page) } catch (e) { console.error(e); alert('Delete failed') } }
-n  return (
+  const handleSaved = (_r: Room) => { fetch(page) }
+  const handleDelete = async (_r: Room) => { if (!confirm('Delete room?')) return; try { await api.delete(`/api/rooms/${_r.id}`); fetch(page) } catch (e) { console.error(e); alert('Delete failed') } }
+  return (
     <div>
       <Stack direction="row" justifyContent="space-between" alignItems="center" sx={{ mb: 2 }}>
         <Typography variant="h4">Rooms</Typography>
@@ -44,7 +44,7 @@ import RoomForm from '../components/RoomForm'
           <Button variant="contained" onClick={handleAdd}>Add Room</Button>
         </Stack>
       </Stack>
-n      <Paper sx={{ p: 2 }}>
+      <Paper sx={{ p: 2 }}>
         {loading ? <CircularProgress /> : error ? <Alert severity="error">{error}</Alert> : (
           <>
             <Grid container spacing={2}>
@@ -67,7 +67,7 @@ import RoomForm from '../components/RoomForm'
           </>
         )}
       </Paper>
-n      <RoomForm open={openForm} onClose={() => setOpenForm(false)} initial={editing} onSaved={handleSaved} />
+      <RoomForm open={openForm} onClose={() => setOpenForm(false)} initial={editing} onSaved={handleSaved} />
     </div>
   )
 }

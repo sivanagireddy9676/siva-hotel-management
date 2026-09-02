@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import { Typography, Paper, TextField, Button, CircularProgress, Alert } from '@mui/material'
 import api from '../api/client'
-nconst Settings: React.FC = () => {
+const Settings: React.FC = () => {
   const [settings, setSettings] = useState<any>({})
   const [loading, setLoading] = useState(true)
   const [saving, setSaving] = useState(false)
   const [error, setError] = useState('')
-n  useEffect(() => {
+  useEffect(() => {
     let mounted = true
     api.get('/api/settings')
       .then(res => { if (mounted) setSettings(res.data || {}) })
@@ -14,7 +14,7 @@ import api from '../api/client'
       .finally(() => { if (mounted) setLoading(false) })
     return () => { mounted = false }
   }, [])
-n  const handleSave = async () => {
+  const handleSave = async () => {
     setSaving(true)
     try {
       await api.put('/api/settings', settings)
@@ -24,9 +24,9 @@ import api from '../api/client'
       alert('Save failed')
     } finally { setSaving(false) }
   }
-n  if (loading) return <CircularProgress />
+  if (loading) return <CircularProgress />
   if (error) return <Alert severity="error">{error}</Alert>
-n  return (
+  return (
     <div>
       <Typography variant="h4" gutterBottom>Settings</Typography>
       <Paper sx={{ p: 2 }}>

@@ -33,7 +33,7 @@ const App: React.FC = () => {
               <Route path="/settings" element={<Settings />} />
               <Route path="/" element={<Navigate to="/dashboard" replace />} />
             </Route>
-n          </Routes>
+          </Routes>
         </Box>
       </Box>
     </>
